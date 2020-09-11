@@ -1,4 +1,8 @@
+const userResolvers = require("./user");
+const departmentResolvers = require("./department");
+const ticketResolvers = require("./ticket");
+
 module.exports = {
-  Query: { test: String },
-  Mutation: { testmut: String }
+  Query: { ...userResolvers.Query, ...departmentResolvers.Query, ...ticketResolvers.Query },
+  Mutation: { ...userResolvers.Mutation, ...departmentResolvers.Mutation, ...ticketResolvers.Mutation }
 };
