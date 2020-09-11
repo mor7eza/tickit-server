@@ -144,10 +144,10 @@ module.exports = gql`
   }
 
   type Query {
-    test: String
+    login(email: String, password: String): AuthResponse
   }
 
   type Mutation {
-    testmut: String
+    test: String
   }
 `;
