@@ -142,4 +142,12 @@ module.exports = gql`
     errors: [fieldError]
     user: User
   }
+
+  type Query {
+    test: String
+  }
+
+  type Mutation {
+    testmut: String
+  }
 `;
