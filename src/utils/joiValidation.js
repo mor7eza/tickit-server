@@ -1,5 +1,7 @@
 const joi = require("@hapi/joi");
 
+const tr = require("../utils/translation.json");
+
 const errorFormatter = ({ error }) => {
   if (!error) return false;
   let errors = [];
@@ -10,6 +12,7 @@ const errorFormatter = ({ error }) => {
   return (errorsResponse = {
     code: 400,
     success: false,
+    message: tr.errors.bad_input,
     errors
   });
 };
