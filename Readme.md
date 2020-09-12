@@ -153,8 +153,8 @@ input CommentInput {
 
 ```
 type fieldError {
-    key : String
-    value : String
+    field : String
+    error : String
 }
 ```
 
