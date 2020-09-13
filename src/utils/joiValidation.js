@@ -6,7 +6,7 @@ const errorFormatter = ({ error }) => {
   if (!error) return false;
   let errors = [];
   error.details.forEach((detail) => {
-    const errObj = { key: detail.path[0], value: detail.message };
+    const errObj = { field: detail.path[0], error: detail.message };
     errors.push(errObj);
   });
   return (errorsResponse = {
@@ -26,5 +26,18 @@ module.exports.loginValidation = (email, password) => {
     .options({ abortEarly: false });
 
   const response = errorFormatter(schema.validate({ email, password }));
+  if (response) return response;
+};
+
+module.exports.registerValidation = (userInput) => {
+  const schema = joi
+    .object({
+      firstName: joi.string().required(),
+      lastName: joi.string().required(),
+      email: joi.string().email().required(),
+      password: joi.string().min(6).required()
+    })
+    .options({ abortEarly: false });
+  const response = errorFormatter(schema.validate(userInput));
   if (response) return response;
 };

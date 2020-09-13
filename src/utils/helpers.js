@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
 const _ = require("lodash");
+const { SECRET_KEY } = require("../../config");
 
-module.exports.genToken = (user) => {
-  const SECRET_KEY = "gMUK3u3Rvi4C0yczHgftqTHMOYdfYWqo8MNC";
-  const user = _.pick(user, ["id", "firstName", "lastName"]);
+module.exports.genToken = (userData) => {
+  const user = _.pick(userData, ["id", "firstName", "lastName"]);
   const token = jwt.sign(user, SECRET_KEY, { expiresIn: "24h" });
   return token;
 };

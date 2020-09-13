@@ -148,6 +148,6 @@ module.exports = gql`
   }
 
   type Mutation {
-    test: String
+    register(userInput: UserInput): AuthResponse
   }
 `;
