@@ -20,11 +20,17 @@ module.exports = {
           errors: [{ field: "email" }, { field: "password" }]
         };
       const token = genToken(user);
-      return {
-        code: 200,
-        success: true,
-        token
-      };
+      return token
+        ? {
+            code: 200,
+            success: true,
+            token
+          }
+        : {
+            code: 500,
+            success: false,
+            message: tr.errors.server_error
+          };
     }
   },
   Mutation: {
@@ -49,11 +55,17 @@ module.exports = {
       });
       await user.save();
       const token = genToken(user);
-      return {
-        code: 200,
-        success: true,
-        token
-      };
+      return token
+        ? {
+            code: 200,
+            success: true,
+            token
+          }
+        : {
+            code: 500,
+            success: false,
+            message: tr.errors.server_error
+          };
     }
   }
 };
