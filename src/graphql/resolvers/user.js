@@ -1,7 +1,6 @@
 const bcrypt = require("bcryptjs");
 
 const { genToken } = require("../../utils/helpers");
-const { SECRET_KEY } = require("../../../config");
 
 const User = require("../../models/User");
 const { loginValidation, registerValidation } = require("../../utils/joiValidation");

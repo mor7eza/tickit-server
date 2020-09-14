@@ -1,6 +1,5 @@
 const ADMIN = "ADMIN";
 const EXPERT = "EXPERT";
-const USER = "USER";
 
 const permissions = {
   deleteTicket: [ADMIN],
