@@ -243,33 +243,77 @@ type UserResponse implements Response {
 
 ```
 login (email, password) : AuthResponse
+permission -> All
+
 getTickets : TicketsResponse
+permission -> ALL
+
 getTicket (ticketId) : TicketResponse
+permission -> ALL
+
 getDepartments : DepartmentsResponse
+permission -> ADMIN
+
 getDepartment (departmentId) : DepartmentResponse
+permission -> ADMIN
+
 getUsers : UsersResponse
+permission -> ADMIN
+
 getUser (userId) : UserResponse
+permission -> ADMIN
 ```
 
 **Mutations**
 
 ```
 register (UserInput) : AuthResponse
+permission -> ALL
+
 newTicket (TicketInput) : TicketResponse
+permission -> ALL
+
 editTicket (TicketInput) : TicketResponse
+permission -> ALL
+
 deleteTicket : TicketResponse
+permission -> ADMIN
+
 referTicket (ticketId, newDepartmentId) : TicketResponse
+permission -> ADMIN, EXPERT
+
 newComment (ticketId, CommentInput) : TicketResponse
+permission -> ALL
+
 editComment (ticketId, CommentInput) : TicketResponse
+permission -> ALL
+
 deleteComment (ticketId, commentId) : TicketResponse
+permission -> ADMIN, EXPERT
+
 newDepartment (name) : DepartmentResponse
+permission -> ADMIN
+
 editDepartment (departmentId, name) : DepartmentResponse
+permission -> ADMIN
+
 deleteDepartment (departmentId) : DepartmentResponse
+permission -> ADMIN
+
 newUser (UserInput) : UserResponse
+permission -> ADMIN
+
 editUser (userId, UserInput) : UserResponse
+permission -> ADMIN
+
 deleteUser (userId) : UserResponse
+permission -> ADMIN
+
 addDepartmentToUser (userId, departmentId) : UserResponse
+permission -> ADMIN
+
 getProfile (userId) : UserResponse
+permission -> ALL
 ```
 
 ---

@@ -3,16 +3,16 @@ const EXPERT = "EXPERT";
 const USER = "USER";
 
 const permissions = {
-  getDepartments: [ADMIN],
-  getDepartment: [ADMIN],
-  getUsers: [ADMIN],
-  getUser: [ADMIN],
   deleteTicket: [ADMIN],
   referTicket: [ADMIN, EXPERT],
   deleteComment: [ADMIN, EXPERT],
+  getDepartments: [ADMIN],
+  getDepartment: [ADMIN],
   newDepartment: [ADMIN],
   editDepartment: [ADMIN],
   deleteDepartment: [ADMIN],
+  getUsers: [ADMIN],
+  getUser: [ADMIN],
   newUser: [ADMIN],
   deleteUser: [ADMIN],
   addDepartmentToUser: [ADMIN]
