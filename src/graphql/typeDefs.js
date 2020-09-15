@@ -145,9 +145,36 @@ module.exports = gql`
 
   type Query {
     login(email: String, password: String): AuthResponse
+    getDepartment(departmentId: ID): DepartmentResponse
+    getDepartments: DepartmentsResponse
   }
 
   type Mutation {
     register(userInput: UserInput): AuthResponse
   }
 `;
+
+// ---QUERY--- //
+// getTickets : TicketsResponse
+// getTicket (ticketId) : TicketResponse
+// getDepartments : DepartmentsResponse
+// getDepartment (departmentId) : DepartmentResponse
+// getUsers : UsersResponse
+// getUser (userId) : UserResponse
+
+// ---MUTATION--- //
+// newTicket (TicketInput) : TicketResponse
+// editTicket (TicketInput) : TicketResponse
+// deleteTicket : TicketResponse
+// referTicket (ticketId, newDepartmentId) : TicketResponse
+// newComment (ticketId, CommentInput) : TicketResponse
+// editComment (ticketId, CommentInput) : TicketResponse
+// deleteComment (ticketId, commentId) : TicketResponse
+// newDepartment (name) : DepartmentResponse
+// editDepartment (departmentId, name) : DepartmentResponse
+// deleteDepartment (departmentId) : DepartmentResponse
+// newUser (UserInput) : UserResponse
+// editUser (userId, UserInput) : UserResponse
+// deleteUser (userId) : UserResponse
+// addDepartmentToUser (userId, departmentId) : UserResponse
+// getProfile (userId) : UserResponse

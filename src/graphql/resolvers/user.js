@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 
-const { genToken } = require("../../utils/helpers");
+const { genToken, response, errorResponse } = require("../../utils/helpers");
 
 const User = require("../../models/User");
 const { loginValidation, registerValidation } = require("../../utils/joiValidation");
@@ -12,24 +12,9 @@ module.exports = {
       if (validationErrors) return validationErrors;
       const user = await User.findOne({ email });
       if (!user || !bcrypt.compareSync(password, user.password))
-        return {
-          code: 400,
-          success: false,
-          message: tr.errors.bad_credential,
-          errors: [{ field: "email" }, { field: "password" }]
-        };
+        return errorResponse(400, "bad_credentil", ["email", "password"]);
       const token = genToken(user);
-      return token
-        ? {
-            code: 200,
-            success: true,
-            token
-          }
-        : {
-            code: 500,
-            success: false,
-            message: tr.errors.server_error
-          };
+      return token ? response(200, { token }) : errorResponse(500, "server_error");
     }
   },
   Mutation: {
@@ -38,13 +23,7 @@ module.exports = {
       if (validationErrors) return validationErrors;
       const { firstName, lastName, email, password } = userInput;
       const existingUser = await User.findOne({ email });
-      if (existingUser)
-        return {
-          code: 400,
-          success: false,
-          message: tr.errors.email_exists,
-          errors: [{ field: "email" }]
-        };
+      if (existingUser) return errorResponse(400, "email_exists", ["email"]);
       const encryptedPassword = bcrypt.hashSync(password);
       const user = new User({
         firstName,
@@ -54,17 +33,7 @@ module.exports = {
       });
       await user.save();
       const token = genToken(user);
-      return token
-        ? {
-            code: 200,
-            success: true,
-            token
-          }
-        : {
-            code: 500,
-            success: false,
-            message: tr.errors.server_error
-          };
+      return token ? response(200, { token }) : errorResponse(500, "server_error");
     }
   }
 };
