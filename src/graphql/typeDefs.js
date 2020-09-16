@@ -145,20 +145,21 @@ module.exports = gql`
 
   type Query {
     login(email: String, password: String): AuthResponse
-    getDepartment(departmentId: ID): DepartmentResponse
+    getDepartment(departmentId: String): DepartmentResponse
     getDepartments: DepartmentsResponse
   }
 
   type Mutation {
     register(userInput: UserInput): AuthResponse
+    newDepartment(name: String): DepartmentResponse
+    deleteDepartment(departmentId: String): DepartmentResponse
+    editDepartment(departmentId: String, name: String): DepartmentResponse
   }
 `;
 
 // ---QUERY--- //
 // getTickets : TicketsResponse
 // getTicket (ticketId) : TicketResponse
-// getDepartments : DepartmentsResponse
-// getDepartment (departmentId) : DepartmentResponse
 // getUsers : UsersResponse
 // getUser (userId) : UserResponse
 
@@ -170,9 +171,7 @@ module.exports = gql`
 // newComment (ticketId, CommentInput) : TicketResponse
 // editComment (ticketId, CommentInput) : TicketResponse
 // deleteComment (ticketId, commentId) : TicketResponse
-// newDepartment (name) : DepartmentResponse
 // editDepartment (departmentId, name) : DepartmentResponse
-// deleteDepartment (departmentId) : DepartmentResponse
 // newUser (UserInput) : UserResponse
 // editUser (userId, UserInput) : UserResponse
 // deleteUser (userId) : UserResponse

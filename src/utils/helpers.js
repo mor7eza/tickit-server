@@ -27,6 +27,7 @@ module.exports.errorResponse = (code, errKey, errFields) => {
       errors
     };
   }
+  return res;
 };
 
 module.exports.response = (code, data) => {

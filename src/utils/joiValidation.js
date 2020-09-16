@@ -41,3 +41,11 @@ module.exports.registerValidation = (userInput) => {
   const response = errorFormatter(schema.validate(userInput));
   if (response) return response;
 };
+
+module.exports.newDepartmentValidation = (name) => {
+  const schema = joi.object({
+    name: joi.string().required()
+  });
+  const response = errorFormatter(schema.validate({ name }));
+  if (response) return response;
+};

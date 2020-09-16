@@ -33,7 +33,7 @@ module.exports = {
       });
       await user.save();
       const token = genToken(user);
-      return token ? response(200, { token }) : errorResponse(500, "server_error");
+      return token ? response(201, { token }) : errorResponse(500, "server_error");
     }
   }
 };
