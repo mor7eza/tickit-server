@@ -246,7 +246,7 @@ type UserResponse implements Response {
 login (email, password) : AuthResponse
 permission -> All
 
-getTickets : TicketsResponse
+getTickets (departmentId, userId) : TicketsResponse
 permission -> ALL
 
 getTicket (ticketId) : TicketResponse

@@ -75,3 +75,15 @@ module.exports.editUserValidation = (userInput) => {
   const response = errorFormatter(schema.validate(userInput));
   if (response) return response;
 };
+
+module.exports.newTicketValidation = (ticketInput) => {
+  const schema = joi
+    .object({
+      subject: joi.string().required(),
+      body: joi.string().required(),
+      departmentId: joi.required()
+    })
+    .options({ abortEarly: false });
+  const response = errorFormatter(schema.validate(ticketInput));
+  if (response) return response;
+};

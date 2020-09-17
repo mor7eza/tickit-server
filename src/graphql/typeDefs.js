@@ -151,6 +151,7 @@ module.exports = gql`
     getUsers: UsersResponse
     getUser(userId: ID): UserResponse
     getProfile(userId: ID): UserResponse
+    getTickets(departmentId: ID, userId: ID): TicketsResponse
   }
 
   type Mutation {
@@ -162,11 +163,11 @@ module.exports = gql`
     editUser(userId: ID, userInput: UserInput): UserResponse
     deleteUser(userId: ID): UserResponse
     addDepartmentToUser(userId: ID, departmentId: ID): UserResponse
+    newTicket(ticketInput: TicketInput): TicketResponse
   }
 `;
 
 // ---QUERY--- //
-// getTickets : TicketsResponse
 // getTicket (ticketId) : TicketResponse
 
 // ---MUTATION--- //
