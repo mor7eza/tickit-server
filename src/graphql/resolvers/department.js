@@ -1,3 +1,4 @@
+const User = require("../../models/User");
 const checkAuth = require("../../utils/checkAuth");
 const tr = require("../../utils/translation.json");
 const Department = require("../../models/Department");
@@ -55,6 +56,20 @@ module.exports = {
       if (!department) return errorResponse(404, "department_not_found");
       department.name = name;
       await department.save();
+      return response(200);
+    },
+    addDepartmentToUser: async (_, { userId, departmentId }, context) => {
+      if (!departmentId || !(departmentId.length == 24)) return errorResponse(400, "invalid_id");
+      if (!userId || !(userId.length == 24)) return errorResponse(400, "invalid_id");
+      const applicant = await checkAuth(context);
+      if (!applicant) return errorResponse(401, "invalid_token");
+      if (!checkPermission("addDepartmentToUser", applicant.role)) return errorResponse(403, "forbidden");
+      let department = await Department.findById(departmentId);
+      if (!department) return errorResponse(404, "department_not_found");
+      const user = await User.findById(userId);
+      if (!user) return errorResponse(404, "user_not_found");
+      user.departments.push(department);
+      await user.save();
       return response(200);
     }
   }

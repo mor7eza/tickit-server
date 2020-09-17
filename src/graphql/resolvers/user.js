@@ -26,7 +26,7 @@ module.exports = {
       const applicant = await checkAuth(context);
       if (!applicant) return errorResponse(401, "invalid_token");
       if (!checkPermission("getUsers", applicant.role)) return errorResponse(403, "forbidden");
-      const users = await User.find();
+      const users = await User.find().populate("departments").exec();
       return response(200, { users });
     },
     getUser: async (_, { userId }, context) => {
@@ -34,6 +34,14 @@ module.exports = {
       const applicant = await checkAuth(context);
       if (!applicant) return errorResponse(401, "invalid_token");
       if (!checkPermission("getUser", applicant.role)) return errorResponse(403, "forbidden");
+      const user = await User.findById(userId).populate("departments").exec();
+      return response(200, { user });
+    },
+    getProfile: async (_, { userId }, context) => {
+      if (!userId || !(userId.length == 24)) return errorResponse(400, "invalid_id");
+      const applicant = await checkAuth(context);
+      if (!applicant) return errorResponse(401, "invalid_token");
+      if (applicant.id !== userId) return errorResponse(403, "forbidden");
       const user = await User.findById(userId);
       return response(200, { user });
     }

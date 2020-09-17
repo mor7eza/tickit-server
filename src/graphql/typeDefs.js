@@ -150,6 +150,7 @@ module.exports = gql`
     getDepartments: DepartmentsResponse
     getUsers: UsersResponse
     getUser(userId: ID): UserResponse
+    getProfile(userId: ID): UserResponse
   }
 
   type Mutation {
@@ -160,6 +161,7 @@ module.exports = gql`
     newUser(userInput: UserInput): UserResponse
     editUser(userId: ID, userInput: UserInput): UserResponse
     deleteUser(userId: ID): UserResponse
+    addDepartmentToUser(userId: ID, departmentId: ID): UserResponse
   }
 `;
 
@@ -175,6 +177,3 @@ module.exports = gql`
 // newComment (ticketId, CommentInput) : TicketResponse
 // editComment (ticketId, CommentInput) : TicketResponse
 // deleteComment (ticketId, commentId) : TicketResponse
-// deleteUser (userId) : UserResponse
-// addDepartmentToUser (userId, departmentId) : UserResponse
-// getProfile (userId) : UserResponse
