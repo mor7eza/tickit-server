@@ -8,7 +8,7 @@ module.exports = gql`
     email: String
     password: String
     role: RoleEnum
-    department: Department
+    departments: [Department]
     createdAt: String
     updatedAt: String
   }
@@ -65,6 +65,7 @@ module.exports = gql`
     lastName: String
     email: String
     password: String
+    role: RoleEnum
   }
 
   input TicketInput {
@@ -145,23 +146,26 @@ module.exports = gql`
 
   type Query {
     login(email: String, password: String): AuthResponse
-    getDepartment(departmentId: String): DepartmentResponse
+    getDepartment(departmentId: ID): DepartmentResponse
     getDepartments: DepartmentsResponse
+    getUsers: UsersResponse
+    getUser(userId: ID): UserResponse
   }
 
   type Mutation {
     register(userInput: UserInput): AuthResponse
     newDepartment(name: String): DepartmentResponse
-    deleteDepartment(departmentId: String): DepartmentResponse
-    editDepartment(departmentId: String, name: String): DepartmentResponse
+    deleteDepartment(departmentId: ID): DepartmentResponse
+    editDepartment(departmentId: ID, name: String): DepartmentResponse
+    newUser(userInput: UserInput): UserResponse
+    editUser(userId: ID, userInput: UserInput): UserResponse
+    deleteUser(userId: ID): UserResponse
   }
 `;
 
 // ---QUERY--- //
 // getTickets : TicketsResponse
 // getTicket (ticketId) : TicketResponse
-// getUsers : UsersResponse
-// getUser (userId) : UserResponse
 
 // ---MUTATION--- //
 // newTicket (TicketInput) : TicketResponse
@@ -171,9 +175,6 @@ module.exports = gql`
 // newComment (ticketId, CommentInput) : TicketResponse
 // editComment (ticketId, CommentInput) : TicketResponse
 // deleteComment (ticketId, commentId) : TicketResponse
-// editDepartment (departmentId, name) : DepartmentResponse
-// newUser (UserInput) : UserResponse
-// editUser (userId, UserInput) : UserResponse
 // deleteUser (userId) : UserResponse
 // addDepartmentToUser (userId, departmentId) : UserResponse
 // getProfile (userId) : UserResponse

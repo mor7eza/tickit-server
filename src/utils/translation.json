@@ -7,6 +7,7 @@
     "invalid_token": "توکن نامعتبر است",
     "forbidden": "دسترسی به این عملیات غیر مجاز است",
     "department_not_found": "دپارتمان یافت نشد",
+    "user_not_found": "کاربر یافت نشد",
     "invalid_id": "شناسه نامعتبر است"
   }
 }

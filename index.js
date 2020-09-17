@@ -19,7 +19,8 @@ try {
       .connect(MONGO_URI_DEV, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useCreateIndex: true
+        useCreateIndex: true,
+        useFindAndModify: false
       })
       .then(() => {
         console.log(`Database connected successfuly.`);

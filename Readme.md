@@ -67,7 +67,7 @@ type User {
     email : String
     password : String
     role : RoleEnum
-    department : Department
+    departments : [Department]
     createdAt : String
     updatedAt : String
 }
@@ -131,6 +131,7 @@ input UserInput {
     lastName : String
     email : String
     password : String
+    role : RoleEnum
 }
 ```
 

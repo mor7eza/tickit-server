@@ -49,3 +49,29 @@ module.exports.newDepartmentValidation = (name) => {
   const response = errorFormatter(schema.validate({ name }));
   if (response) return response;
 };
+
+module.exports.newUserValidation = (userInput) => {
+  const schema = joi
+    .object({
+      firstName: joi.string().required(),
+      lastName: joi.string().required(),
+      email: joi.string().email().required(),
+      password: joi.string().min(6).required(),
+      role: joi.string()
+    })
+    .options({ abortEarly: false });
+  const response = errorFormatter(schema.validate(userInput));
+  if (response) return response;
+};
+
+module.exports.editUserValidation = (userInput) => {
+  const schema = joi
+    .object({
+      firstName: joi.string(),
+      lastName: joi.string(),
+      role: joi.string()
+    })
+    .options({ abortEarly: false });
+  const response = errorFormatter(schema.validate(userInput));
+  if (response) return response;
+};
