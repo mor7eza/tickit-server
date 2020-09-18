@@ -38,7 +38,6 @@ module.exports = gql`
     user: User
     body: String
     createdAt: String
-    updatedAt: String
   }
 
   type fieldError {
@@ -72,13 +71,6 @@ module.exports = gql`
     subject: String
     body: String
     departmentId: ID
-  }
-
-  input CommentInput {
-    id: ID
-    body: String
-    createdAt: String
-    updatedAt: String
   }
 
   interface Response {
@@ -168,10 +160,9 @@ module.exports = gql`
     editTicket(ticketId: ID, ticketInput: TicketInput): TicketResponse
     deleteTicket(ticketId: ID): TicketResponse
     referTicket(ticketId: ID, departmentId: ID): TicketResponse
+    newComment(ticketId: ID, body: String): TicketResponse
   }
 `;
 
 // ---MUTATION--- //
-// newComment (ticketId, CommentInput) : TicketResponse
-// editComment (ticketId, CommentInput) : TicketResponse
-// deleteComment (ticketId, commentId) : TicketResponse
+// newComment (ticketId, body) : TicketResponse

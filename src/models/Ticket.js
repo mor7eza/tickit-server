@@ -11,9 +11,9 @@ const ticketSchema = new Schema(
     comments: [
       {
         id: ObjectId,
+        user: { type: ObjectId, ref: "User" },
         body: String,
-        createdAt: String,
-        updatedAt: String
+        createdAt: { type: String, default: Date.now }
       }
     ]
   },

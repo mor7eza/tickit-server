@@ -144,15 +144,6 @@ input TicketInput {
 ```
 
 ```
-input CommentInput {
-    id : ID
-    body : String
-    createdAt : String
-    updatedAt : String
-}
-```
-
-```
 type fieldError {
     field : String
     error : String
@@ -283,14 +274,14 @@ permission -> ADMIN
 referTicket (ticketId, departmentId) : TicketResponse
 permission -> ADMIN, EXPERT
 
-newComment (ticketId, CommentInput) : TicketResponse
+newComment (ticketId, body) : TicketResponse
 permission -> ALL
 
-editComment (ticketId, CommentInput) : TicketResponse
+<!-- editComment (ticketId, CommentInput) : TicketResponse
 permission -> ALL
 
 deleteComment (ticketId, commentId) : TicketResponse
-permission -> ADMIN, EXPERT
+permission -> ADMIN, EXPERT -->
 
 newDepartment (name) : DepartmentResponse
 permission -> ADMIN

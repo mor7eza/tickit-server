@@ -99,3 +99,13 @@ module.exports.editTicketValidation = (ticketInput) => {
   const response = errorFormatter(schema.validate(ticketInput));
   if (response) return response;
 };
+
+module.exports.newCommentValidation = (body) => {
+  const schema = joi
+    .object({
+      body: joi.string().required()
+    })
+    .options({ abortEarly: false });
+  const response = errorFormatter(schema.validate({ body }));
+  if (response) return response;
+};

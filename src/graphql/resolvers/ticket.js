@@ -1,6 +1,8 @@
+const mongoose = require("mongoose");
+
 const { errorResponse, response } = require("../../utils/helpers");
 const Ticket = require("../../models/Ticket");
-const { newTicketValidation, editTicketValidation } = require("../../utils/joiValidation");
+const { newTicketValidation, editTicketValidation, newCommentValidation } = require("../../utils/joiValidation");
 const Department = require("../../models/Department");
 const checkAuth = require("../../utils/checkAuth");
 const User = require("../../models/User");
@@ -83,6 +85,22 @@ module.exports = {
         .exec();
       if (!ticket) return errorResponse(404, "ticket_not_found");
       return response(200, { ticket });
+    },
+    newComment: async (_, { ticketId, body }, context) => {
+      if (!ticketId || !(ticketId.length == 24)) return errorResponse(400, "invalid_id");
+      const applicant = await checkAuth(context);
+      if (!applicant) return errorResponse(401, "invalid_token");
+      const validationErrors = newCommentValidation(body);
+      if (validationErrors) return validationErrors;
+      const ticket = await Ticket.findById(ticketId)
+        .populate({ path: "comments", populate: { path: "user", model: "User" } })
+        .exec();
+      if (!ticket) return errorResponse(404, "ticket_not_found");
+      const id = mongoose.Types.ObjectId();
+      const comment = { id, user: applicant, body };
+      ticket.comments.push(comment);
+      await ticket.save();
+      return response(201, { ticket });
     }
   }
 };
