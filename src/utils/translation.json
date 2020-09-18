@@ -8,6 +8,8 @@
     "forbidden": "دسترسی به این عملیات غیر مجاز است",
     "department_not_found": "دپارتمان یافت نشد",
     "user_not_found": "کاربر یافت نشد",
-    "invalid_id": "شناسه نامعتبر است"
+    "ticket_not_found": "تیکت یافت نشد",
+    "invalid_id": "شناسه نامعتبر است",
+    "ticket_forbidden_error": "امکان ویرایش تیکت بدلیل وضعیت وجود ندارد"
   }
 }

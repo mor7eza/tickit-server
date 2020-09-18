@@ -274,13 +274,13 @@ permission -> ALL
 newTicket (TicketInput) : TicketResponse
 permission -> ALL
 
-editTicket (TicketInput) : TicketResponse
+editTicket (ticketId, TicketInput) : TicketResponse
 permission -> ALL
 
 deleteTicket : TicketResponse
 permission -> ADMIN
 
-referTicket (ticketId, newDepartmentId) : TicketResponse
+referTicket (ticketId, departmentId) : TicketResponse
 permission -> ADMIN, EXPERT
 
 newComment (ticketId, CommentInput) : TicketResponse

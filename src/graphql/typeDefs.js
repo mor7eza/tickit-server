@@ -152,6 +152,7 @@ module.exports = gql`
     getUser(userId: ID): UserResponse
     getProfile(userId: ID): UserResponse
     getTickets(departmentId: ID, userId: ID): TicketsResponse
+    getTicket(ticketId: ID): TicketResponse
   }
 
   type Mutation {
@@ -164,17 +165,13 @@ module.exports = gql`
     deleteUser(userId: ID): UserResponse
     addDepartmentToUser(userId: ID, departmentId: ID): UserResponse
     newTicket(ticketInput: TicketInput): TicketResponse
+    editTicket(ticketId: ID, ticketInput: TicketInput): TicketResponse
+    deleteTicket(ticketId: ID): TicketResponse
+    referTicket(ticketId: ID, departmentId: ID): TicketResponse
   }
 `;
 
-// ---QUERY--- //
-// getTicket (ticketId) : TicketResponse
-
 // ---MUTATION--- //
-// newTicket (TicketInput) : TicketResponse
-// editTicket (TicketInput) : TicketResponse
-// deleteTicket : TicketResponse
-// referTicket (ticketId, newDepartmentId) : TicketResponse
 // newComment (ticketId, CommentInput) : TicketResponse
 // editComment (ticketId, CommentInput) : TicketResponse
 // deleteComment (ticketId, commentId) : TicketResponse
