@@ -80,7 +80,7 @@ module.exports = {
       if (!checkPermission("referTicket", applicant.role)) return errorResponse(403, "forbidden");
       const department = await Department.findById(departmentId);
       if (!department) return errorResponse(404, "department_not_found");
-      const ticket = await Ticket.findByIdAndUpdate(ticketId, { department }, { new: true })
+      const ticket = await Ticket.findByIdAndUpdate(ticketId, { department, status: "REFERRED" }, { new: true })
         .populate("department")
         .exec();
       if (!ticket) return errorResponse(404, "ticket_not_found");
@@ -99,8 +99,14 @@ module.exports = {
       const id = mongoose.Types.ObjectId();
       const comment = { id, user: applicant, body };
       ticket.comments.push(comment);
+      ticket.status = "UPDATED";
       await ticket.save();
       return response(201, { ticket });
+    },
+    changeTicketStatus: async (_, { ticketId, status }) => {
+      if (!ticketId || !(ticketId.length == 24)) return errorResponse(400, "invalid_id");
+      const ticket = await Ticket.findByIdAndUpdate(ticketId, { status }, { new: true });
+      return response(200, { ticket });
     }
   }
 };

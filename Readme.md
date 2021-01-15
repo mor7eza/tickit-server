@@ -277,12 +277,6 @@ permission -> ADMIN, EXPERT
 newComment (ticketId, body) : TicketResponse
 permission -> ALL
 
-<!-- editComment (ticketId, CommentInput) : TicketResponse
-permission -> ALL
-
-deleteComment (ticketId, commentId) : TicketResponse
-permission -> ADMIN, EXPERT -->
-
 newDepartment (name) : DepartmentResponse
 permission -> ADMIN
 

@@ -161,8 +161,6 @@ module.exports = gql`
     deleteTicket(ticketId: ID): TicketResponse
     referTicket(ticketId: ID, departmentId: ID): TicketResponse
     newComment(ticketId: ID, body: String): TicketResponse
+    changeTicketStatus(ticketId: ID, status: StatusEnum): TicketResponse
   }
 `;
-
-// ---MUTATION--- //
-// newComment (ticketId, body) : TicketResponse
